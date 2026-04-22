@@ -1,47 +1,86 @@
-# BOR Analytics Dashboard Engine
+# Board of Reviews (BOR) Analytics Dashboard Engine
 
-A production-ready, modular, data-driven dashboard application for Board of Reviews (BOR) analytics.
+This project is a reusable, data-driven analytics system designed for CEPT University's Board of Reviews. It transforms raw Excel survey data into a comprehensive dashboard with 16 dynamic tabs, sentiment analysis, and narrative insights.
 
-## Tech Stack
-- **Frontend**: Next.js (App Router), TypeScript, Tailwind CSS, Recharts
-- **Backend**: FastAPI, Pandas, TextBlob (NLP)
-- **Deployment**: Docker, Docker Compose
+---
 
-## Features
-- **Dynamic Data Pipeline**: Automatically parses Excel sheets and normalizes wide-format question data.
-- **16 Analytics Tabs**: Comprehensive views from Semester Overview to Panelist Behaviour.
-- **Sentiment Engine**: Extracts keywords, themes, and representative quotes from remarks using NLP.
-- **Insight Engine**: Generates rule-driven narrative insights based on performance thresholds.
-- **Print Support**: Optimized for high-quality printing of dashboard tabs.
+## 🚀 Quick Start (Using Docker)
 
-## Docker Setup (Laptop)
+The easiest way to run the application is using Docker. This ensures all dependencies (Python, Node.js, etc.) are correctly configured.
 
-To run this system on your laptop using Docker, follow these steps:
+### Prerequisites
+- Install **Docker Desktop** (for Mac or Windows): [Download here](https://www.docker.com/products/docker-desktop/)
 
-1. **Install Docker**:
-   - [Docker Desktop](https://www.docker.com/products/docker-desktop/) for Windows/Mac.
-   - [Docker Engine](https://docs.google.com/search?q=install+docker+engine) for Linux.
-2. **Open Terminal**: Navigate to the `bor-dashboard` directory.
-3. **Build & Run**:
+### Setup Steps
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/shaileshtrivedicept/BoRAnalytics.git
+   cd BoRAnalytics
+   ```
+   *(Note: If prompted for a password, use a Personal Access Token as discussed.)*
+
+2. **Run with Docker Compose**:
+   From the project root (`BoRAnalytics/`), run:
    ```bash
    docker-compose up --build
    ```
-4. **Access Dashboard**: Open [http://localhost:3000](http://localhost:3000) in your browser.
-5. **Upload Data**: Use the provided sample Excel file to populate the dashboard.
 
-## Manual Setup (Development)
+3. **Access the Application**:
+   - Dashboard (Frontend): [http://localhost:3000](http://localhost:3000)
+   - API Documentation (Backend): [http://localhost:8000/docs](http://localhost:8000/docs)
 
-**Backend:**
-```bash
-cd backend
-pip install -r ../requirements.txt
-uvicorn main:app --reload --port 8000
-```
+4. **Upload Data**:
+   - When you open the dashboard, you will be prompted to upload an Excel file.
+   - Use the `BOR_clean_structured_analysis_FA PG_pk1.0.xlsx` file provided in the repository.
+   - The dashboard will dynamically generate all 16 tabs based on this data.
 
-**Frontend:**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Access at `http://localhost:3000`. Ensure backend is running first.
+---
+
+## 🛠️ Manual Setup (For Development)
+
+If you prefer not to use Docker, you can set up the services manually.
+
+### 1. Backend (FastAPI)
+- **Prerequisites**: Python 3.12+
+- **Setup**:
+  ```bash
+  cd bor-dashboard/backend
+  python3 -m venv venv
+  source venv/bin/activate  # On Windows: venv\Scripts\activate
+  pip install -r ../requirements.txt
+  python3 -m textblob.download_corpora
+  uvicorn main:app --reload --port 8000
+  ```
+
+### 2. Frontend (Next.js)
+- **Prerequisites**: Node.js 22+
+- **Setup**:
+  ```bash
+  cd bor-dashboard/frontend
+  npm install
+  npm run dev
+  ```
+- **Access**: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📊 Dashboard Features
+1. **Semester Overview**: Global KPIs and trends.
+2. **Studio Bar Chart**: Compare studios by normalized scores.
+3. **Studio Score Chart**: Raw panel score comparisons.
+4. **Programme Comparison**: Performance by department (MLA, MID, etc.).
+5. **Criteria Overview**: Radar chart showing performance across all evaluation criteria.
+6. **Studio Criteria Drill-down**: Detailed heatmap-style table of studio performance per criteria.
+7. **Key Insights**: Rule-driven narrative observations about the dataset.
+8. **Highlights (Top/Watch List)**: Automated ranking of studios.
+9. **Panel Divergence**: Identification of studios where panelists had high scoring differences.
+10. **Sentiment Analytics**: Keyword clouds and representative quotes extracted from panelist remarks.
+
+---
+
+## 📂 Project Structure
+- `/backend`: FastAPI application, data processing logic, and NLP engines.
+- `/frontend`: Next.js React application with Recharts visualizations.
+- `/shared`: Shared constants and thresholds.
+- `docker-compose.yml`: Orchestration for the full stack.
+- `requirements.txt`: Python dependencies.
