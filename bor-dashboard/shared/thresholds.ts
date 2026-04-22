@@ -1,0 +1,5 @@
+export const THRESHOLDS = {
+  POSITIVE: 5,
+  NEGATIVE: -5,
+  DIVERGENCE_ALERT: 10
+};
