@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F0F2F5;
+  --foreground: #1C2B4A;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Calibri, 'Segoe UI', system-ui, sans-serif;
+}
+
+@media print {
+  header, nav, .filter-bar {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
