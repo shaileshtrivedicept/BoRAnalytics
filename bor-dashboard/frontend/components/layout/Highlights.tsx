@@ -17,20 +17,32 @@ const Highlights: React.FC<{ data: DashboardData; type: 'top' | 'watch' }> = ({ 
              <p className="text-[10px] text-gray-400 font-bold uppercase">{studio.programme}</p>
              <h4 className="text-xs font-bold mt-1 h-8 line-clamp-2">{studio.studio_title}</h4>
              <div className="flex justify-between items-end mt-4">
-                <span className="text-2xl font-bold">{studio.avg_score.toFixed(1)}</span>
+                <span className="text-2xl font-bold">{studio.avg_score.toFixed(2)}</span>
                 <span className="text-[10px] text-gray-500 uppercase">{studio.student_count} Students</span>
              </div>
           </div>
         ))}
       </div>
 
-      <Card title={type === 'top' ? "Success Factors" : "Identified Risks"}>
-         <ul className="text-xs space-y-2 list-disc list-inside text-gray-600">
-            {type === 'top'
-              ? ["High consistency across panels", "Strong conceptual clarity", "Excellent presentation standards"]
-              : ["High divergence in scores", "Weak technical resolution in some cases", "Unbalanced workload indicators"]
-            }
-         </ul>
+      <Card title={type === 'top' ? "Performance Success Factors" : "Critical Risk Indicators"}>
+         <div className="grid md:grid-cols-2 gap-8">
+            <div>
+               <h4 className="text-[10px] font-bold text-gray-400 uppercase mb-2">Automated Insight</h4>
+               <p className="text-xs text-gray-600 leading-relaxed">
+                  {type === 'top'
+                    ? `The top studios show high scoring consistency with an average of ${displayStudios[0]?.avg_score.toFixed(2)}. These studios typically exhibit strong alignment between panel members.`
+                    : `Studios on the watch list require immediate pedagogical review. The lowest average score is ${displayStudios[displayStudios.length-1]?.avg_score.toFixed(2)}, indicating systemic gaps.`
+                  }
+               </p>
+            </div>
+            <div>
+               <h4 className="text-[10px] font-bold text-gray-400 uppercase mb-2">Key Metrics</h4>
+               <ul className="text-xs space-y-2 list-disc list-inside text-gray-600">
+                  <li>Avg Consensus: {((1 - data.high_divergence.length / Math.max(1, data.divergence.length)) * 100).toFixed(1)}%</li>
+                  <li>Target Score: {type === 'top' ? '> 8.0' : '< 5.0'}</li>
+               </ul>
+            </div>
+         </div>
       </Card>
     </div>
   );

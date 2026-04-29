@@ -3,8 +3,6 @@ import Card from '../cards/Card';
 import { DashboardData } from '../../types';
 
 const CriteriaOverview: React.FC<{ data: DashboardData }> = ({ data }) => {
-  // In a real dataset, we'd group data by criterion.
-  // For the sample, let's assume we have a way to get criteria stats.
   return (
     <Card title="Criteria Performance Matrix">
       <div className="overflow-x-auto">
@@ -17,14 +15,16 @@ const CriteriaOverview: React.FC<{ data: DashboardData }> = ({ data }) => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-             {/* Mocking for now based on typical criteria */}
-             {["Design Concept", "Technical Resolution", "Presentation", "Contextual Analysis"].map(c => (
-               <tr key={c}>
-                 <td className="px-4 py-2 text-xs text-gray-700">{c}</td>
-                 <td className="px-4 py-2 text-xs text-gray-700 font-mono">{(Math.random() * 3 + 6).toFixed(2)}</td>
+             {data.criteria_stats.map(c => (
+               <tr key={c.criterion}>
+                 <td className="px-4 py-2 text-xs text-gray-700 font-bold">{c.criterion}</td>
+                 <td className="px-4 py-2 text-xs text-gray-700 font-mono">{c.score.toFixed(2)}</td>
                  <td className="px-4 py-2">
                     <div className="w-full bg-gray-100 rounded-full h-1.5">
-                      <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${Math.random() * 30 + 60}%` }}></div>
+                      <div
+                        className={`h-1.5 rounded-full ${c.strength > 75 ? 'bg-green-500' : c.strength < 40 ? 'bg-red-500' : 'bg-blue-600'}`}
+                        style={{ width: `${Math.min(100, c.strength)}%` }}
+                      ></div>
                     </div>
                  </td>
                </tr>

@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pandas
+openpyxl
+openai
+python-dotenv
+pydantic
+pydantic-settings
+python-multipart
+pytest
+httpx
+scikit-learn
+nltk
