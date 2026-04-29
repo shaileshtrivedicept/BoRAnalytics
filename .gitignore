@@ -1,0 +1,7 @@
+bor-dashboard/frontend/node_modules/
+bor-dashboard/frontend/.next/
+bor-dashboard/frontend/out/
+bor-dashboard/backend/__pycache__/
+bor-dashboard/backend/data_storage/*.xlsx
+!bor-dashboard/backend/data_storage/sample_data.xlsx
+server.log

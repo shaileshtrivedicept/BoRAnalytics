@@ -1,0 +1,19 @@
+{
+  "columns": {
+    "Semester": "semester",
+    "Program": "programme",
+    "Studio_Code": "studio_id",
+    "Studio_Title": "studio_title",
+    "Tutor_Names": "tutor",
+    "Panelist_Names": "panelist",
+    "Panel": "panel_number_raw",
+    "RawPanelScore": "raw_score",
+    "General_Comment": "general_comment",
+    "Email": "student_id"
+  },
+  "themes": {
+    "Design Process": ["design", "process", "concept"],
+    "Technical": ["technical", "construction", "material"],
+    "Innovation": ["innovation", "creative", "original"]
+  }
+}

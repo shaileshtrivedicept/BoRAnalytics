@@ -1,0 +1,11 @@
+export const DASHBOARD_THRESHOLDS = {
+  EXCELLENT_SCORE: 0.8,
+  LOW_SCORE: 0.5,
+  HIGH_DIVERGENCE: 0.5,
+  CONSISTENT_DIFF: 0.2,
+};
+
+export const UI_CONFIG = {
+  THEME_COLOR: '#1a1a1a',
+  ACCENT_COLOR: '#2563eb',
+};
